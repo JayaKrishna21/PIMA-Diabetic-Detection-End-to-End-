@@ -76,6 +76,7 @@ if __name__ == "__main__":
 
     # Training Model
     modeltrainer = ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train_arr,test_arr)) # giving the model : transformed train,test arrays to get better accuracy
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
+     # giving the model : transformed train,test arrays to get better accuracy
 
     

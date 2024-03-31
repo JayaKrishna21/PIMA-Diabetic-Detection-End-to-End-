@@ -62,9 +62,20 @@ class ModelTrainer:
                 'NeuralNetwork': MLPClassifier(),
             }
 
+            param_grid = {
+                'SVC': {'C':[0.001, 0.01, 0.1, 1], 'kernel': ['linear', 'rbf']},
+                'LogisticRegression': {'C': [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 100]},
+                'RandomForest': {'n_estimators': [10,20,50, 100, 200], 'max_depth': [None,3,2, 10, 20]},
+                'DecisionTree': {'max_depth':[3, 5, 7, 9, 11, 13]},
+                'KNeighbors': {'n_neighbors': [3, 20, 2]},
+                'AdaBoost':{'n_estimators': [10,20,50, 100, 200]},
+                'GradientBoosting': {'n_estimators': [50, 100, 200], 'learning_rate': [0.05, 0.1, 0.2], 'max_depth': [3, 5, 7]},
+                'NeuralNetwork': {'hidden_layer_sizes': [(50,), (100,), (50,50), (100,50)], 'activation': ['logistic', 'relu'], 'alpha': [0.0001, 0.001, 0.01]}
+            }   
+
             # Creating a function which stores accuracy scores of models mentioned above iteratively
 
-            model_report:dict = evaluate_model(X_train = X_train, y_train = y_train, X_test = X_test, y_test = y_test, models = models)
+            model_report:dict = evaluate_model(X_train = X_train, y_train = y_train, X_test = X_test, y_test = y_test, models = models,param_grid = param_grid)
 
 
             # To get best model name from dict
