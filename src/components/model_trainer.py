@@ -62,31 +62,33 @@ class ModelTrainer:
                 'NeuralNetwork': MLPClassifier(),
             }
 
-            param_grid = {
+            params = {
                 'SVC': {'C':[0.001, 0.01, 0.1, 1], 'kernel': ['linear', 'rbf']},
                 'LogisticRegression': {'C': [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 100]},
-                'RandomForest': {'n_estimators': [10,20,50, 100, 200], 'max_depth': [None,3,2, 10, 20]},
+                'RandomForest': {'n_estimators': [10,20,50, 100, 200, 500], 'max_depth': [None,3,2, 10, 20, 50]},
                 'DecisionTree': {'max_depth':[3, 5, 7, 9, 11, 13]},
                 'KNeighbors': {'n_neighbors': [3, 20, 2]},
                 'AdaBoost':{'n_estimators': [10,20,50, 100, 200]},
-                'GradientBoosting': {'n_estimators': [50, 100, 200], 'learning_rate': [0.05, 0.1, 0.2], 'max_depth': [3, 5, 7]},
+                'GradientBoosting': {'n_estimators': [50, 100, 200,500], 'learning_rate': [0.05, 0.1, 0.2], 'max_depth': [3, 5, 7, 9]},
                 'NeuralNetwork': {'hidden_layer_sizes': [(50,), (100,), (50,50), (100,50)], 'activation': ['logistic', 'relu'], 'alpha': [0.0001, 0.001, 0.01]}
             }   
 
             # Creating a function which stores accuracy scores of models mentioned above iteratively
 
-            model_report:dict = evaluate_model(X_train = X_train, y_train = y_train, X_test = X_test, y_test = y_test, models = models,param_grid = param_grid)
+            model_report:dict = evaluate_model(X_train = X_train, y_train = y_train, X_test = X_test, y_test = y_test, models = models,param=params)
 
+
+            # best model score
+
+            best_model_score = max(sorted(model_report.values()))
 
             # To get best model name from dict
 
             best_model_name = list(model_report.keys())[
-                list(model_report.values()).index(max(sorted(model_report.values())))
+                list(model_report.values()).index(best_model_score)
                 ]
             
-            # best model score
-
-            best_model_score = max(sorted(model_report.values()))
+            
 
             best_model = models[best_model_name]
 

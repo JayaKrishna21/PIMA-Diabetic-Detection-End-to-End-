@@ -1,0 +1,60 @@
+<!-- default template in HTML  -->
+<html>
+<body>
+    <div class="login">
+       <h1>Student Exam Performance Indicator</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Student Exam Performance Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Pregnancies</label>
+            <input class="form-control" type="number" name="Pregnancies"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Glucose</label>
+            <input class="form-control" type="number" name="Glucose"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">BloodPressure</label>
+            <input class="form-control" type="number" name="BloodPressure"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">skinThickness</label>
+            <input class="form-control" type="number" name="skinThickness"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Insulin</label>
+            <input class="form-control" type="number" name="Insulin"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">BMI</label>
+            <input class="form-control" type="number" name="BMI"
+                placeholder="Enter your Reading score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">DiabetesPedigreeFunction</label>
+            <input class="form-control" type="number" name="DiabetesPedigreeFunction"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" name="Age"
+                placeholder="Enter your Reading Score" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Chance of being diabetic" required />
+        </div>
+    </form>
+    <h2>
+       THE  prediction is {{results}}
+    </h2>
+   <body>
+</html>
