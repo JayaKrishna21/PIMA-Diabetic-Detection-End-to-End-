@@ -14,12 +14,12 @@ app = application
 @app.route('/')
 
 def index():
-    return render_template('abc.html')
+    return render_template('home.html')
 
 @app.route('/predict data',methods = ['GET','POST'])
 def predict_datapoint():
     if request.method == 'GET':
-        return render_template('abc.html')
+        return render_template('home.html')
     else:
         data = CustomData(
             Pregnancies=request.form.get('Pregnancies'),
@@ -36,8 +36,16 @@ def predict_datapoint():
 
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
+        score = int(results[0])
+
+        if score == 0:
+            tag = "Safe from Diabetes"
         
-        return render_template('abc.html',results = results[0])
+        else:
+            tag = "Prone to Diabetes !!"
+
+        
+        return render_template('home.html',results = tag)
     
 
 if __name__ == "__main__":
