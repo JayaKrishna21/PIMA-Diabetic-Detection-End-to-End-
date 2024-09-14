@@ -1,3 +1,8 @@
+# This is the application file that will be uploaded into the AWS BeanStalk 
+# So application.py is the replica of the app.py
+# Where app..py  is the main application file for the flask deployement
+# But the application.py is the entry point for the AWS
+
 from flask import Flask,request,render_template
 import numpy as np
 import pandas as pd
@@ -49,6 +54,9 @@ def predict_datapoint():
     
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0",debug = True)
+    app.run(host = "0.0.0.0") #(,debug = True)
+
+
+# In the application.py file.....app.run(.... ,debug = True)....debug =TRUE needs to be ommited
 
 
